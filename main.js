@@ -152,8 +152,9 @@ const panelMarkup = () => {
 const writeToDos = data => {
   if(data) {
    if(data.length >= 1) {
+    console.log(data.length)
     let listItems = '';
-    $('.list').html();
+    $('.list').children().remove();
     for(let i = 0; i < data.length; i++) {
       let isChecked = data[i].done ? 'checked' : ''
       listItems += /*html*/`
@@ -172,7 +173,6 @@ const writeToDos = data => {
 
 
     $('.list').html(listItems)
-    
     $('.to-do-item').each(function() {
       if($(this).hasClass('is-checked')) {
         $(this).find('.checker').attr('checked', true)
@@ -207,14 +207,12 @@ const show = async event => {
       }
 
       allItems.push(setData)
+      console.log(allItems)
       storageHelper.set('weee', allItems);
-
-      console.log('hi', allItems)
-      
       $('.list').children().remove();
-      console.log('deleted?')
 
       let listItems = '';
+
       for(let i = 0; i < allItems.length; i++) {
         let isChecked = allItems[i].done ? 'checked' : ''
         listItems += /*html*/`
@@ -230,9 +228,7 @@ const show = async event => {
         `
       }
   
-  
       $('.list').html(listItems)
-      console.log('weee')
       
       $('.to-do-item').each(function() {
         if($(this).hasClass('is-checked')) {
@@ -250,7 +246,6 @@ const show = async event => {
     /*
       Check hack
     */
-   
     $(document).on('click', '.checklist-group',  function() {
       let cleanItem = allItems;
       let checked = $(this).parent().hasClass('is-checked')
@@ -276,7 +271,7 @@ const show = async event => {
 
 
     $('.form').on('submit', addCheckListItem)
-    $('#addNote').on('click', addCheckListItem)
+
   
   
     /*
@@ -284,7 +279,6 @@ const show = async event => {
     */
     function deleteData() {
       console.log('deleted')
-      storageHelper.delete('weee')
       allItems = [];
       $('.list').html(`<div class="task-list" style="color: #999;">Add your first task item</div>`)
     }
@@ -296,14 +290,44 @@ const show = async event => {
     function removal() {
       let updatedDate = allItems;
       const i = $(this).parent().index()
+      console.log(i)
       const filteredItems = updatedDate.slice(0, i).concat(updatedDate.slice(i + 1, updatedDate.length))
       allItems = filteredItems;
       $(this).parent().hide();
+      // console.log(filteredItems)
       setTimeout(() => {
         storageHelper.set('weee', filteredItems)
+        console.log(filteredItems.length)
         if(filteredItems.length <= 0) {
           storageHelper.delete('weee');
           $('.list').html(`<div class="task-list" style="color: #999;">Add your first task item</div>`)
+        } else {
+          $('.list').children().remove();
+
+      let listItems = '';
+
+      for(let i = 0; i < allItems.length; i++) {
+        let isChecked = allItems[i].done ? 'checked' : ''
+        listItems += /*html*/`
+          <div class="to-do-item is-${isChecked}">
+            <div class="checklist-group">
+              <input class="checker" style="position: relative; top: 1px;" type="checkbox" id="checklist-item-"${[i]}>
+              <label style="margin-left: 4px;" for="checklist-item-"${[i]}>${allItems[i].toDo}</label>
+            </div>
+            <div class="delete">
+              <div class="delete-item">(Remove)</div>
+            </div>
+          </div>
+        `
+      }
+  
+      $('.list').html(listItems)
+      
+      $('.to-do-item').each(function() {
+        if($(this).hasClass('is-checked')) {
+          $(this).find('.checker').attr('checked', true)
+        }
+      })
         }
       })
 

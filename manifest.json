@@ -1,12 +1,12 @@
 {
-  "id": "eaoijo",
+  "id": "4e1ee53d",
   "name": "Task list",
   "version": "0.0.1",
   "description": "Description of your plugin.",
   "summary": "Summary of your plugin",
   "languages": ["en"],
-  "author": "Plugin Author",
-  "helpUrl": "https://mywebsite.com/help",
+  "author": "Kenny Krosky",
+  "helpUrl": "https://twitter.com/ispykenny",
   "host": {
     "app": "XD",
     "minVersion": "18.0"
