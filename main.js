@@ -143,6 +143,7 @@ const panelMarkup = () => {
 
 const writeToDos = data => {
   if(data) {
+   if(data.length >= 1) {
     console.log(data.length)
     let listItems = '';
     $('.list').html('');
@@ -171,8 +172,10 @@ const writeToDos = data => {
         $(this).find('.checker').attr('checked', true)
       }
     })
+   }
   } else {
     console.log('user has no data')
+    storageHelper.delete('weee');
   }
 }
 
@@ -199,6 +202,8 @@ const show = async event => {
 
       allItems.push(setData)
       storageHelper.set('weee', allItems);
+
+      console.log('hi', allItems)
       
       $('.list').append(`
       <div class="is-new to-do-item is-${setData.done}">
@@ -219,20 +224,23 @@ const show = async event => {
     /*
       Check hack
     */
-    $(document).on('click', '.to-do-item',  function() {
+    $(document).on('click', '.checklist-group',  function() {
       let cleanItem = allItems;
-      let checked = $(this).hasClass('is-checked')
+      let checked = $(this).parent().hasClass('is-checked')
+      console.log($(this).parents('.to-do-item').index())
+      
       if(checked) {
         $(this).find('.checker').attr('checked', false)
-        $(this).removeClass('is-checked')
+        $(this).parent().removeClass('is-checked')
       } else {
         $(this).find('.checker').attr('checked', true)
-        $(this).addClass('is-checked')
+        $(this).parent().addClass('is-checked')
       }
-      if(cleanItem[$(this).index()].done) {
-        cleanItem[$(this).index()].done = false
+
+      if(cleanItem[$(this).parents('.to-do-item').index()].done) {
+        cleanItem[$(this).parents('.to-do-item').index()].done = false
       } else {
-        cleanItem[$(this).index()].done = true
+        cleanItem[$(this).parents('.to-do-item').index()].done = true
       }
       storageHelper.set('weee', cleanItem);
       
@@ -262,12 +270,18 @@ const show = async event => {
       let updatedDate = allItems;
       const i = $(this).parent().index()
       const filteredItems = updatedDate.slice(0, i).concat(updatedDate.slice(i + 1, updatedDate.length))
-      allItems = filteredItems
-      console.log($(this).parent().index())
-      console.log(allItems)
-      storageHelper.delete('weee')
-      storageHelper.set('weee', allItems)
+      allItems = filteredItems;
       $(this).parent().hide();
+      console.log(filteredItems)
+      setTimeout(() => {
+        storageHelper.set('weee', filteredItems)
+        console.log(filteredItems.length)
+        if(filteredItems.length <= 0) {
+          storageHelper.delete('weee');
+          $('.list').html(`<div class="task-list" style="color: #999;">Add your first task item</div>`)
+        }
+      })
+
     }
 
     $(document).on('click', '.delete', removal)
