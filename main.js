@@ -34,6 +34,12 @@ let styles = /*css*/ `
     font-size: 22px;
   }
 
+  .task-list {
+    padding-top: 8px;
+    font-size: 12px;
+    padding-left: 6px;
+  }
+
   .to-do-item label{
     color: black;
     font-size: 12px;
@@ -88,7 +94,6 @@ let styles = /*css*/ `
 
   .checklist-group {
     width: 80%;
-    background: red;
   }
 
   .button-group {
@@ -130,7 +135,7 @@ const panelMarkup = () => {
           <input uxp-quiet="true" name="el" id="input-el" placeholder="Add item" autofocus>
           <div class="button-group">
             <button class="reset">Clear</button> 
-            <button uxp-variant="cta" id="addNote" >Add</button>
+            <button uxp-variant="cta" id="addNote">Add</button>
           </div>
         </form>
         
@@ -272,7 +277,7 @@ const show = async event => {
 
 
     $('.form').on('submit', addCheckListItem)
-
+    $('#addNote').on('click', addCheckListItem)
   
   
     /*
