@@ -47,7 +47,7 @@ let styles = /*css*/ `
   }
 
   .delete {
-    opacity: 0;
+    /* opacity: 0; */
     font-size: 8px;
     color: #aaa;
     right: 0;
@@ -59,12 +59,10 @@ let styles = /*css*/ `
 
   .to-do-item:hover .delete {
     opacity: 1;
-    color: #000;
   }
 
   .to-do-item:hover .delete:hover {
-    opacity: 1;
-    color: #4A95E8;
+    color: #000;
   }
 
   .to-do-parent {
@@ -86,6 +84,11 @@ let styles = /*css*/ `
 
   .outer-most {
     position: relative;
+  }
+
+  .checklist-group {
+    width: 80%;
+    background: red;
   }
 
   .button-group {
@@ -146,7 +149,7 @@ const writeToDos = data => {
    if(data.length >= 1) {
     console.log(data.length)
     let listItems = '';
-    $('.list').html('');
+    $('.list').html();
     for(let i = 0; i < data.length; i++) {
       let isChecked = data[i].done ? 'checked' : ''
       listItems += /*html*/`
@@ -205,17 +208,37 @@ const show = async event => {
 
       console.log('hi', allItems)
       
-      $('.list').append(`
-      <div class="is-new to-do-item is-${setData.done}">
-        <div class="checklist-group">
-          <input class="checker" style="position: relative; top: 1px;" type="checkbox">
-          <label style="margin-left: 4px;">${setData.toDo}</label>
-        </div>
-        <div class="delete">
-          <div class="delete-item">(Remove)</div>
-        </div>
-      </div>
-      `)
+      $('.list').children().remove();
+      console.log('deleted?')
+
+      let listItems = '';
+      for(let i = 0; i < allItems.length; i++) {
+        let isChecked = allItems[i].done ? 'checked' : ''
+        listItems += /*html*/`
+          <div class="to-do-item is-${isChecked}">
+            <div class="checklist-group">
+              <input class="checker" style="position: relative; top: 1px;" type="checkbox" id="checklist-item-"${[i]}>
+              <label style="margin-left: 4px;" for="checklist-item-"${[i]}>${allItems[i].toDo}</label>
+            </div>
+            <div class="delete">
+              <div class="delete-item">(Remove)</div>
+            </div>
+          </div>
+        `
+      }
+  
+  
+      $('.list').html(listItems)
+      console.log('weee')
+      
+      $('.to-do-item').each(function() {
+        if($(this).hasClass('is-checked')) {
+          $(this).find('.checker').attr('checked', true)
+        }
+      })
+     
+
+
 
       $("#input-el").val('');
       $("#input-el").focus();
