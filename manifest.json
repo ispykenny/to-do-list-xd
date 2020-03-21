@@ -2,6 +2,10 @@
   "id": "4e1ee53d",
   "name": "Task list",
   "version": "0.0.1",
+  "icons": [
+    { "width": 24, "height": 24, "path": "images/icon@48.png" },
+    { "width": 48, "height": 48, "path": "images/icon@96.png" }
+  ],
   "description": "Description of your plugin.",
   "summary": "Summary of your plugin",
   "languages": ["en"],
