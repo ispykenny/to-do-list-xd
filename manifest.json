@@ -1,6 +1,6 @@
 {
-  "id": "dadwadfa",
-  "name": "Plugin Name",
+  "id": "eaoijo",
+  "name": "Task list",
   "version": "0.0.1",
   "description": "Description of your plugin.",
   "summary": "Summary of your plugin",
@@ -14,7 +14,7 @@
   "uiEntryPoints": [
     {
       "type": "panel",
-      "label": "Plugin Label",
+      "label": "Task List",
       "panelId": "runPlugin"
     }
   ]

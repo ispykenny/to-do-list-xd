@@ -29,39 +29,45 @@ let styles = /*css*/ `
     align-items: flex-start;
   }
 
+  .title {
+    padding: 0px 0px 10px 0px;
+    font-size: 22px;
+  }
+
   .to-do-item label{
     color: black;
-    font-size: 13px;
+    font-size: 12px;
     top: 3px;
     line-height: 18px;
     position: relative;
   }
+
   .to-do-item.is-checked label {
     color: #aaa;
   }
+
   .delete {
     opacity: 0;
-    font-size: 10px;
+    font-size: 8px;
     color: #aaa;
     right: 0;
     text-align: right;
     margin-top: 4px;
     position: absolute;
-    background: #4F95E8;
-    padding: 4px 6px;
+    padding: 2px;
   }
 
   .to-do-item:hover .delete {
     opacity: 1;
-    color: #fff;
+    color: #000;
   }
 
   .to-do-item:hover .delete:hover {
     opacity: 1;
+    color: #4A95E8;
   }
 
   .to-do-parent {
-    background: white;
     overflow: auto;
     position: relative;
     width: 100%;
@@ -69,29 +75,36 @@ let styles = /*css*/ `
   }
 
   .action-group {
-    background: white;
     position: relative;
     width: 100%;
     padding: 10px;
   }
 
   .to-do-parent__inner {
-    padding: 20px 20px 0px 20px;
+    padding: 20px 10px 0px 10px;
   }
 
   .outer-most {
     position: relative;
   }
+
   .button-group {
     display: flex;
     justify-content: center;
   }
-  h1 {
-    padding: 0px 0px 10px 0px;
-  }
 
   input::placeholder {
     color: green;
+  }
+
+  @media(max-width: 300px) {
+    .title {
+      font-size: 14px;
+    }
+
+    .to-do-item label{
+      font-size: 10px;
+    }
   }
 
 `
@@ -103,7 +116,7 @@ const panelMarkup = () => {
   </style>
     <div class="outer-most">
       <div class="to-do-parent">
-        <div class="to-do-parent__inner"><h1>✏️ Task list</h1>
+        <div class="to-do-parent__inner"><span class="title">✏️ Task list</span>
           <div class="list">
             <div class="task-list" style="color: #999;">Add your first task item</div>
           </div>
@@ -139,7 +152,7 @@ const writeToDos = data => {
         <div class="to-do-item is-${isChecked}">
           <div class="checklist-group">
             <input class="checker" style="position: relative; top: 1px;" type="checkbox" id="checklist-item-"${[i]}>
-            <label style="margin-left: 8px;" for="checklist-item-"${[i]}>${data[i].toDo}</label>
+            <label style="margin-left: 4px;" for="checklist-item-"${[i]}>${data[i].toDo}</label>
           </div>
           <div class="delete">
             <div class="delete-item">(Remove)</div>
@@ -191,7 +204,7 @@ const show = async event => {
       <div class="is-new to-do-item is-${setData.done}">
         <div class="checklist-group">
           <input class="checker" style="position: relative; top: 1px;" type="checkbox">
-          <label style="margin-left: 8px;">${setData.toDo}</label>
+          <label style="margin-left: 4px;">${setData.toDo}</label>
         </div>
         <div class="delete">
           <div class="delete-item">(Remove)</div>
@@ -203,7 +216,9 @@ const show = async event => {
       $("#input-el").focus();
     }
     
-
+    /*
+      Check hack
+    */
     $(document).on('click', '.to-do-item',  function() {
       let cleanItem = allItems;
       let checked = $(this).hasClass('is-checked')
@@ -220,7 +235,7 @@ const show = async event => {
         cleanItem[$(this).index()].done = true
       }
       storageHelper.set('weee', cleanItem);
-      console.log(allItems)
+      
     })
 
 
@@ -229,7 +244,9 @@ const show = async event => {
 
   
   
-  
+    /*
+     Reset
+    */
     function deleteData() {
       console.log('deleted')
       storageHelper.delete('weee')
@@ -239,6 +256,21 @@ const show = async event => {
   
   
     $('.reset').on('click', deleteData)
+
+
+    function removal() {
+      let updatedDate = allItems;
+      const i = $(this).parent().index()
+      const filteredItems = updatedDate.slice(0, i).concat(updatedDate.slice(i + 1, updatedDate.length))
+      allItems = filteredItems
+      console.log($(this).parent().index())
+      console.log(allItems)
+      storageHelper.delete('weee')
+      storageHelper.set('weee', allItems)
+      $(this).parent().hide();
+    }
+
+    $(document).on('click', '.delete', removal)
 
 
   }
