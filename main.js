@@ -152,7 +152,6 @@ const panelMarkup = () => {
 const writeToDos = data => {
   if(data) {
    if(data.length >= 1) {
-    console.log(data.length)
     let listItems = '';
     $('.list').html();
     for(let i = 0; i < data.length; i++) {
@@ -173,7 +172,6 @@ const writeToDos = data => {
 
 
     $('.list').html(listItems)
-    console.log('weee')
     
     $('.to-do-item').each(function() {
       if($(this).hasClass('is-checked')) {
@@ -252,6 +250,7 @@ const show = async event => {
     /*
       Check hack
     */
+   
     $(document).on('click', '.checklist-group',  function() {
       let cleanItem = allItems;
       let checked = $(this).parent().hasClass('is-checked')
@@ -300,10 +299,8 @@ const show = async event => {
       const filteredItems = updatedDate.slice(0, i).concat(updatedDate.slice(i + 1, updatedDate.length))
       allItems = filteredItems;
       $(this).parent().hide();
-      console.log(filteredItems)
       setTimeout(() => {
         storageHelper.set('weee', filteredItems)
-        console.log(filteredItems.length)
         if(filteredItems.length <= 0) {
           storageHelper.delete('weee');
           $('.list').html(`<div class="task-list" style="color: #999;">Add your first task item</div>`)
