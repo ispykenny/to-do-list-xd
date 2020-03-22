@@ -25,6 +25,7 @@ module.exports =  /*css*/ `
 
 .task-list {
   padding-top: 8px;
+  padding-bottom: 8px;
   font-size: 12px;
   padding-left: 6px;
 }
@@ -70,7 +71,7 @@ module.exports =  /*css*/ `
 .action-group {
   position: relative;
   width: 100%;
-  padding: 10px;
+  padding: 0px;
 }
 
 .to-do-parent__inner {

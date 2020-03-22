@@ -18,7 +18,7 @@ module.exports.panelContainer = () => {
         <form class="form">
           <input uxp-quiet="true" name="el" id="input-el" placeholder="Add item" autofocus>
           <div class="button-group">
-            <button class="reset">Clear</button> 
+            <button class="reset">Clear List</button> 
             <button uxp-variant="cta" id="addNote">Add</button>
           </div>
         </form>
