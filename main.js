@@ -124,7 +124,7 @@ const panelMarkup = () => {
   </style>
     <div class="outer-most">
       <div class="to-do-parent">
-        <div class="to-do-parent__inner"><span class="title">✏️ Task list</span>
+        <div class="to-do-parent__inner"><span class="title">Task List</span>
           <div class="list">
             <div class="task-list" style="color: #999;">Add your first task item</div>
           </div>
