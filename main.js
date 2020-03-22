@@ -200,9 +200,11 @@ const show = async event => {
       Updates lastInput = await storageHelper.get('weee')
     */
     async function addCheckListItem() {
+      let inputValue = document.getElementById("input-el").value
+      if(inputValue < 1) return;
       $('.task-list').hide();
       let setData = {
-        toDo: document.getElementById("input-el").value,
+        toDo: inputValue,
         done: false
       }
 
@@ -271,7 +273,7 @@ const show = async event => {
 
 
     $('.form').on('submit', addCheckListItem)
-
+    $('#addNote').on('click', addCheckListItem);
   
   
     /*
