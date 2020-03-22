@@ -9,7 +9,6 @@ const { writeListItem } = require('../components/writeListItem');
 
 module.exports.addCheckListItem = async function() {
   const $list = $('.list');
-  const $listParent = $('.to-do-item');
   let inputValue = document.getElementById("input-el").value
   if (inputValue < 1) return;
   $('.task-list').hide();
@@ -24,7 +23,8 @@ module.exports.addCheckListItem = async function() {
 
   $list.children().remove();
   $list.html(writeListItem(state.data))
-  $listParent.each(function () {
+
+  $('.to-do-item').each(function () {
     if ($(this).hasClass('is-checked')) {
       $(this).find('.checker').attr('checked', true)
     }

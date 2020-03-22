@@ -27,7 +27,10 @@ const show = async event => {
   }
 }
 
-const hide = () => console.log('hiding')
+const hide = (event) => {
+  event.node.innerHTML = '';
+  console.log('task list closed')
+}
 
 module.exports = {
   panels: {
