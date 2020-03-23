@@ -1,35 +1,67 @@
 /*
   Plugin Documentation
   https://adobexdplatform.com/plugin-docs/
-  @Plugin: Task List
-  @Author Kenny Krosky @ispykenny 
+  @Plugin: Notes
+  @Author Kenny Krosky 
 */
-const $ = require('./lib/jquery');
 const storageHelper = require('./lib/storage-helper');
-const { panelContainer } = require('./components/panelContainer');
 const { addCheckListItem } = require('./components/addToNotes');
 const { checkboxChecker } = require('./components/checkboxChecker')
 const { deleteItem } = require('./components/removeItem');
 const { clearAll } = require('./components/clearAll');
-const { loadedTask } = require('./components/loadedTask')
+const { loadedTask } = require('./components/loadedTask');
+const $ = require('./lib/jquery');
+const styles = require('./components/styles');
 let panel;
 
+const panelContainer = () => {
+  let html = /* html */ `
+  <style>
+    ${styles}
+  </style>
+    <div class="outer-most">
+      <div class="to-do-parent">
+        <div class="to-do-parent__inner">
+          <div class="list">
+            <div class="task-list" style="color: #999;">Add your first task item</div>
+          </div>
+        </div>
+      </div>
+      <div class="action-group">
+        <form class="form">
+          <input uxp-quiet="true" name="el" id="input-el" placeholder="Add item" autofocus>
+          <div class="button-group">
+            <button class="reset">Clear List</button> 
+            <button uxp-variant="cta" id="addNote">Add</button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  `;
+  panel = document.createElement("div");
+  panel.innerHTML = html;
+  return panel;
+}
+
+
 const show = async event => {
+  
   if (!panel) {
     await event.node.appendChild(panelContainer());
-    let initialStateData = await storageHelper.get('weee');
-    loadedTask(initialStateData);
+    let initialState = await storageHelper.get('weee');
+    loadedTask(initialState);
     $('.form').on('submit', addCheckListItem);
     $('#addNote').on('click', addCheckListItem);
     $('.reset').on('click', clearAll);
     $(document).on('click', '.delete', deleteItem);
     $(document).on('click', '.checklist-group', checkboxChecker)
   }
+
 }
 
-const hide = (event) => {
-  event.node.innerHTML = '';
-  console.log('task list closed')
+const hide = () => {
+  console.log('hiding')
 }
 
 module.exports = {
