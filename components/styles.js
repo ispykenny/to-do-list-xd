@@ -6,6 +6,7 @@ module.exports =  /*css*/ `
   padding: 8px 0px 10px 0px;
   position: relative;
   border-bottom: 1px solid #ddd;
+  width: 100%;
 }
 
 .to-do-item:last-child {
@@ -48,9 +49,10 @@ module.exports =  /*css*/ `
   color: #aaa;
   right: 0;
   text-align: right;
-  margin-top: 4px;
   position: absolute;
+  top: 50%;
   padding: 2px;
+  transform: translateY(-50%);
 }
 
 .to-do-item:hover .delete {
@@ -72,6 +74,10 @@ module.exports =  /*css*/ `
   position: relative;
   width: 100%;
   padding: 0px;
+}
+
+.action-group input {
+  width: 100%;
 }
 
 .to-do-parent__inner {

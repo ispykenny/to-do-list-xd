@@ -5,7 +5,7 @@ module.exports.writeListItem = function(data) {
   for (let i = 0; i < data.length; i++) {
   let isChecked = data[i].done ? 'checked' : ''
   listItems += /*html*/ `
-    <div class="to-do-item is-${isChecked}">
+    <div class="to-do-item is-${isChecked}" style="position: relative;">
       <div class="checklist-group">
         <input class="checker" style="position: relative; top: 1px;" type="checkbox" id="checklist-item-"${[i]}>
         <label style="margin-left: 4px;" for="checklist-item-"${[i]}>${data[i].toDo}</label>
