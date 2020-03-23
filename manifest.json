@@ -13,7 +13,7 @@
   "helpUrl": "https://twitter.com/ispykenny",
   "host": {
     "app": "XD",
-    "minVersion": "18.0"
+    "minVersion": "21.0"
   },
   "uiEntryPoints": [
     {
