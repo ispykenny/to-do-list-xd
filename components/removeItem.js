@@ -4,15 +4,16 @@ const storageHelper = require('../lib/storage-helper');
 const { writeListItem } = require('../components/writeListItem');
 
 module.exports.deleteItem = (event) => {
-  console.log('weee')
  let $this = $(event.currentTarget);
  let updatedDate = state.data;
  const i = $this.parent().index()
  const filteredItems = updatedDate.slice(0, i).concat(updatedDate.slice(i + 1, updatedDate.length))
  state.data = filteredItems;
  $this.parent().hide();
+
  setTimeout(() => {
    storageHelper.set('weee', filteredItems)
+
    if (filteredItems.length <= 0) {
      storageHelper.delete('weee');
      $('.list').html(`<div class="task-list" style="color: #000;">Add your first task item</div>`)
@@ -28,8 +29,9 @@ module.exports.deleteItem = (event) => {
      })
    }
 
-   if(state.data.length <= 1) {
-    $('.move-parent').hide();
-  }
+    if(state.data.length <= 1) {
+      $('.move-parent').hide();
+    }
+    
  })
 }
