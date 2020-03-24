@@ -6,7 +6,6 @@ module.exports.checkboxChecker = async (event) => {
   let cleanItem = state.data;
   let $this = $(event.currentTarget);
   let checked = $this.parents('.to-do-item').hasClass('is-checked')
-  console.log($this.parents('.to-do-item').index())
 
   if (checked) {
     $this.find('.checker').attr('checked', false)

@@ -1,4 +1,4 @@
 # 🚗 **Roadmap**
 
-- Allow users to reorder their lists
-- Create a section for users to write notes.
+- [x] Allow users to reorder their lists **Added 3.25.2020**
+- [ ] Create a section for users to write notes.

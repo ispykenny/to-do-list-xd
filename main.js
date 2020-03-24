@@ -35,8 +35,7 @@ const panelContainer = () => {
             <button class="reset">Clear List</button> 
             <button uxp-variant="cta" id="addNote">Add</button>
           </div>
-        </form>
-        
+        </form>   
       </div>
     </div>
   `;
@@ -52,6 +51,13 @@ const show = async event => {
     await event.node.appendChild(panelContainer());
     let initialState = await storageHelper.get('weee');
     loadedTask(initialState);
+
+    if(initialState !== undefined) {
+      if(initialState.length <= 1) {
+        $('.move-parent').hide();
+      }
+    }
+    
     $('.form').on('submit', addCheckListItem);
     $('#addNote').on('click', addCheckListItem);
     $('.reset').on('click', clearAll);

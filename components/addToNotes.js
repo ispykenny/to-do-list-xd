@@ -32,4 +32,9 @@ module.exports.addCheckListItem = async function() {
 
   $("#input-el").val('');
   $("#input-el").focus();
+
+
+  if(state.data.length <= 1) {
+    $('.move-parent').hide();
+  }
 }

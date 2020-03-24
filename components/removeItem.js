@@ -13,10 +13,9 @@ module.exports.deleteItem = (event) => {
  $this.parent().hide();
  setTimeout(() => {
    storageHelper.set('weee', filteredItems)
-   console.log(filteredItems.length)
    if (filteredItems.length <= 0) {
      storageHelper.delete('weee');
-     $('.list').html(`<div class="task-list" style="color: #999;">Add your first task item</div>`)
+     $('.list').html(`<div class="task-list" style="color: #000;">Add your first task item</div>`)
    } else {
      $('.list').children().remove();
      $('.list').html(writeListItem(state.data))
@@ -28,5 +27,9 @@ module.exports.deleteItem = (event) => {
        }
      })
    }
+
+   if(state.data.length <= 1) {
+    $('.move-parent').hide();
+  }
  })
 }
