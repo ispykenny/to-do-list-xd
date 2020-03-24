@@ -1,7 +1,6 @@
 module.exports =  /*css*/ `
 
 .to-do-item {
-  /* display: flex;  */
   align-items: center; 
   padding: 8px 0px 10px 0px;
   position: relative;
@@ -9,21 +8,19 @@ module.exports =  /*css*/ `
   width: 100%;
 }
 
+.to-do-item:last-child {
+  padding-bottom: 0px;
+}
+
 .item-container {
   display: flex;
-  /* align-items: center; */
 }
 
 .move-parent {
-  width: 16px;
+  width: 12px;
   position: relative;
-  top: 2px;
+  top: 1px;
 }
-
-/* .move-parent img {
-  width: 70%;
-  margin-left: 15%;
-} */
 
 .move-parent img:hover {
   opacity: 0.6;
@@ -39,16 +36,14 @@ module.exports =  /*css*/ `
 .to-do-item:first-child .move.down img {
   top: 8px;
   position: absolute;
-  /* transform: translateY(-50%); */
+  cursor: pointer;
 }
-
 
 .to-do-item:last-child .move.up img {
   top: 8px;
   position: absolute;
-  /* transform: translateY(-50%); */
+  cursor: pointer;
 }
-
 
 .to-do-item:last-child .move.down {
   display: none;
@@ -93,7 +88,7 @@ module.exports =  /*css*/ `
   position: absolute;
   z-index: 99;
   top: 8px;
-  padding: 8px;
+  padding: 4px;
   background: #E1E1E1;
 }
 
@@ -115,7 +110,7 @@ module.exports =  /*css*/ `
 .action-group {
   position: relative;
   width: 100%;
-  padding: 0px;
+  padding: 0px 5px;
 }
 
 .action-group input {
@@ -137,10 +132,6 @@ module.exports =  /*css*/ `
 .button-group {
   display: flex;
   justify-content: center;
-}
-
-input::placeholder {
-  color: green;
 }
 
 @media(max-width: 300px) {

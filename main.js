@@ -24,13 +24,13 @@ const panelContainer = () => {
       <div class="to-do-parent">
         <div class="to-do-parent__inner">
           <div class="list">
-            <div class="task-list" style="color: #999;">Add your first task item</div>
+            <div class="task-list" style="color: #000;">Add your first task item</div>
           </div>
         </div>
       </div>
       <div class="action-group">
         <form class="form">
-          <input uxp-quiet="true" name="el" id="input-el" placeholder="Add item" autofocus>
+          <input uxp-quiet="true" name="el" id="input-el" placeholder="Add Item" autofocus>
           <div class="button-group">
             <button class="reset">Clear List</button> 
             <button uxp-variant="cta" id="addNote">Add</button>

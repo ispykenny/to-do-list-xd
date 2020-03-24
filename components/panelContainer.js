@@ -10,7 +10,7 @@ module.exports.panelContainer = () => {
       <div class="to-do-parent">
         <div class="to-do-parent__inner">
           <div class="list">
-            <div class="task-list" style="color: #999;">Add your first task item</div>
+            <div class="task-list" style="color: #000;">Add your first task item</div>
           </div>
         </div>
       </div>
