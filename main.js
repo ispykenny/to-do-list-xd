@@ -10,6 +10,7 @@ const { checkboxChecker } = require('./components/checkboxChecker')
 const { deleteItem } = require('./components/removeItem');
 const { clearAll } = require('./components/clearAll');
 const { loadedTask } = require('./components/loadedTask');
+const { arrange } = require('./components/arrange');
 const $ = require('./lib/jquery');
 const styles = require('./components/styles');
 let panel;
@@ -56,6 +57,7 @@ const show = async event => {
     $('.reset').on('click', clearAll);
     $(document).on('click', '.delete', deleteItem);
     $(document).on('click', '.checklist-group', checkboxChecker)
+    $(document).on('click', '.move', arrange);
   }
 
 }

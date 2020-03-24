@@ -9,8 +9,49 @@ module.exports =  /*css*/ `
   width: 100%;
 }
 
+.item-container {
+  display: flex;
+  /* align-items: center; */
+}
+
+.move-parent {
+  width: 16px;
+  position: relative;
+  top: 2px;
+}
+
+/* .move-parent img {
+  width: 70%;
+  margin-left: 15%;
+} */
+
+.move-parent img:hover {
+  opacity: 0.6;
+}
 .to-do-item:last-child {
   border-bottom: none;
+}
+
+.to-do-item:first-child .move.up {
+  display: none;
+}
+
+.to-do-item:first-child .move.down img {
+  top: 8px;
+  position: absolute;
+  /* transform: translateY(-50%); */
+}
+
+
+.to-do-item:last-child .move.up img {
+  top: 8px;
+  position: absolute;
+  /* transform: translateY(-50%); */
+}
+
+
+.to-do-item:last-child .move.down {
+  display: none;
 }
 
 .checklist-group {
@@ -44,15 +85,16 @@ module.exports =  /*css*/ `
 }
 
 .delete {
-  /* opacity: 0; */
+  opacity: 0;
   font-size: 8px;
   color: #aaa;
   right: 0;
   text-align: right;
   position: absolute;
-  top: 50%;
-  padding: 2px;
-  transform: translateY(-50%);
+  z-index: 99;
+  top: 8px;
+  padding: 8px;
+  background: #E1E1E1;
 }
 
 .to-do-item:hover .delete {
@@ -89,7 +131,7 @@ module.exports =  /*css*/ `
 }
 
 .checklist-group {
-  width: 80%;
+  width: 100%;
 }
 
 .button-group {
@@ -107,7 +149,7 @@ input::placeholder {
   }
 
   .to-do-item label{
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
