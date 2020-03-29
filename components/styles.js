@@ -20,6 +20,7 @@ module.exports =  /*css*/ `
   width: 12px;
   position: relative;
   top: 1px;
+  opacity: 0.4;
 }
 
 .move-parent img:hover {
@@ -64,7 +65,7 @@ module.exports =  /*css*/ `
   padding-top: 8px;
   padding-bottom: 8px;
   font-size: 12px;
-  padding-left: 6px;
+  width: 100%;
 }
 
 .to-do-item label{
@@ -72,6 +73,7 @@ module.exports =  /*css*/ `
   font-size: 12px;
   top: 3px;
   line-height: 18px;
+  width: calc(100% - 40px);
   position: relative;
 }
 
@@ -89,7 +91,15 @@ module.exports =  /*css*/ `
   z-index: 99;
   top: 8px;
   padding: 4px;
+  background: #EEE;
+}
+
+.delete:hover {
   background: #E1E1E1;
+}
+
+.to-do-item:hover .move-parent {
+  opacity: 1;
 }
 
 .to-do-item:hover .delete {
@@ -132,6 +142,36 @@ module.exports =  /*css*/ `
 .button-group {
   display: flex;
   justify-content: center;
+}
+
+/* .switch-parent {
+  display: flex;
+  align-items: center;
+} */
+
+.switch {
+  background: #5187F6;
+  height: 12px;
+  width: 30px;
+  border-radius: 6px;
+  position: relative;
+  margin-top: 4px;
+  /* margin-left: 8px; */
+}
+
+.switch.is-on .switch-ball {
+  transform: translate(150%, -50%);
+}
+.switch-ball {
+  height: 12px;
+  width: 12px;
+  background: #FFFFFF;
+  border: 1px solid #CBCBCB;
+  border-radius: 100%;
+  position: absolute;
+  top: 50%; left: 0;
+  transform: translate(0%, -50%);
+  transition: transform 400ms ease;
 }
 
 @media(max-width: 300px) {

@@ -64,6 +64,7 @@ const show = async event => {
     $(document).on('click', '.delete', deleteItem);
     $(document).on('click', '.checklist-group', checkboxChecker)
     $(document).on('click', '.move', arrange);
+
   }
 
 }
