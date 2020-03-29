@@ -1,6 +1,7 @@
 # 🚗 **Roadmap**
 
 - [x] Allow users to reorder their lists *Added 3.25.2020*
+- [ ] Allow users to hide/show reorganizer
 - [ ] Allow users to create individual lists per project/category
 - [ ] Create a section for users to write notes.
 
