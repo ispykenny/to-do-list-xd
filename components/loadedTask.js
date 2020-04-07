@@ -1,4 +1,3 @@
-const $ = require('../lib/jquery');
 const storageHelper = require('../lib/storage-helper');
 const state = require('./state');
 
@@ -6,7 +5,7 @@ module.exports.loadedTask = data => {
   if (data) {
     if (data.length >= 1) {
       let listItems = '';
-      $('.list').children().remove();
+      document.querySelector('.list').innerHTML = '';
       for (let i = 0; i < data.length; i++) {
         let isChecked = data[i].done ? 'checked' : ''
         listItems += /*html*/`
@@ -34,12 +33,13 @@ module.exports.loadedTask = data => {
       `
         state.data.push(data[i])
       }
-      $('.list').html(listItems)
-      $('.to-do-item').each(function () {
-        if ($(this).hasClass('is-checked')) {
-          $(this).find('.checker').attr('checked', true)
+      document.querySelector('.list').innerHTML = listItems;
+      const $listItem = document.querySelectorAll('.to-do-item');
+      for(let i = 0; i < $listItem.length; i++) {
+        if($listItem[i].classList.contains('is-checked')) {
+          $listItem[i].querySelector('.checker').setAttribute('checked', true)
         }
-      })
+      }
     }
   } else {
     console.log('user has no data')

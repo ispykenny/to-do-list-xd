@@ -1,11 +1,9 @@
-const $ = require('../lib/jquery');
-
 module.exports.writeListItem = function(data) {
   let listItems = '';
   for (let i = 0; i < data.length; i++) {
   let isChecked = data[i].done ? 'checked' : ''
   listItems += /*html*/ `
-    <div class="to-do-item is-${isChecked}" style="position: relative;">
+    <div class="to-do-item is-${isChecked}" style="position: relative;" data-index=${i}>
       <div class="item-container">
         <div class="move-parent">
           <div class="move up">

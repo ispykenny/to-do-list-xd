@@ -11,7 +11,6 @@ const { deleteItem } = require('./components/removeItem');
 const { clearAll } = require('./components/clearAll');
 const { loadedTask } = require('./components/loadedTask');
 const { arrange } = require('./components/arrange');
-const $ = require('./lib/jquery');
 const styles = require('./components/styles');
 let panel;
 const panelContainer = () => {
@@ -49,7 +48,6 @@ const show = async event => {
   if (!panel) {
     await event.node.appendChild(panelContainer());
     let initialState = await storageHelper.get('weee');
-    console.log(initialState)
     loadedTask(initialState);
 
     if(initialState !== undefined) {
@@ -58,10 +56,16 @@ const show = async event => {
       }
     }
     
-    $('.form').on('submit', addCheckListItem);
-    $('#addNote').on('click', addCheckListItem);
-    $('.reset').on('click', clearAll);
-    $(document).on('click', '.delete', deleteItem);
+    document.querySelector('.form').addEventListener('submit', addCheckListItem)
+    document.querySelector('#addNote').addEventListener('click', addCheckListItem)
+    document.querySelector('.reset').addEventListener('click', clearAll)
+
+    const deleteElement = document.querySelectorAll('.delete')
+
+    for(let i = 0; i < document.querySelectorAll('.delete').length; i++) {
+      deleteElement[i].addEventListener('click', deleteItem)
+    }
+
     $(document).on('click', '.checklist-group', checkboxChecker)
     $(document).on('click', '.move', arrange);
 
