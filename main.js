@@ -22,7 +22,6 @@ const panelContainer = () => {
     <div class="outer-most">
       <div class="to-do-parent">
         <div class="to-do-parent__inner">
-
           <div class="list">
             <div class="task-list" style="color: #000;">Add your first task item</div>
           </div>
@@ -50,6 +49,7 @@ const show = async event => {
   if (!panel) {
     await event.node.appendChild(panelContainer());
     let initialState = await storageHelper.get('weee');
+    console.log(initialState)
     loadedTask(initialState);
 
     if(initialState !== undefined) {

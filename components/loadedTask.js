@@ -10,7 +10,7 @@ module.exports.loadedTask = data => {
       for (let i = 0; i < data.length; i++) {
         let isChecked = data[i].done ? 'checked' : ''
         listItems += /*html*/`
-        <div class="to-do-item is-${isChecked}">
+        <div class="to-do-item is-${isChecked}" data-index="${i}">
           <div class="item-container">
             <div class="move-parent">
               <div class="move up">
