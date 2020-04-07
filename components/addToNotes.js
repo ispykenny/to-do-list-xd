@@ -2,17 +2,21 @@
   Add items to checklist 
   Updates lastInput = await storageHelper.get('weee')
 */
-const $ = require('../lib/jquery');
 const storageHelper = require('../lib/storage-helper');
 const state = require('../components/state');
 const { writeListItem } = require('../components/writeListItem');
 
 module.exports.addCheckListItem = async function() {
-  const $list = $('.list');
+  const $list = document.querySelector('.list')
   let inputValue = document.getElementById("input-el").value
   if (inputValue < 1) return;
-  $('.task-list').hide();
 
+  const $taskList = document.querySelector('.task-list')
+
+  if($taskList) {
+    $taskList.style.display = 'none';
+  }
+  
   let setData = {
     toDo: inputValue,
     done: false
@@ -21,20 +25,22 @@ module.exports.addCheckListItem = async function() {
   state.data.push(setData)
   storageHelper.set('weee', state.data);
 
-  $list.children().remove();
-  $list.html(writeListItem(state.data))
+  $list.innerHTML = '';
+  $list.innerHTML = writeListItem(state.data);
 
-  $('.to-do-item').each(function () {
-    if ($(this).hasClass('is-checked')) {
-      $(this).find('.checker').attr('checked', true)
+  const $listItem = document.querySelectorAll('.to-do-item');
+
+  for(let i = 0; i < $listItem.length; i++) {
+    if($listItem[i].classList.contains('is-checked')) {
+      $listItem[i].querySelector('.checker').setAttribute('checked', true)
     }
-  })
+  }
 
-  $("#input-el").val('');
-  $("#input-el").focus();
+  document.getElementById("input-el").value = ''
+  document.getElementById("input-el").focus();
 
 
   if(state.data.length <= 1) {
-    $('.move-parent').hide();
+    document.querySelectorAll('.move-parent').style.display = 'none';
   }
 }
