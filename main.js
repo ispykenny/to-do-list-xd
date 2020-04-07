@@ -14,7 +14,6 @@ const { arrange } = require('./components/arrange');
 const $ = require('./lib/jquery');
 const styles = require('./components/styles');
 let panel;
-
 const panelContainer = () => {
   let html = /* html */ `
   <style>
@@ -23,6 +22,7 @@ const panelContainer = () => {
     <div class="outer-most">
       <div class="to-do-parent">
         <div class="to-do-parent__inner">
+
           <div class="list">
             <div class="task-list" style="color: #000;">Add your first task item</div>
           </div>
